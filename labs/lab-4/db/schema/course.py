@@ -1,5 +1,5 @@
 """course.py: create a table named courses in the marist database"""
-from db.db import db
+from server import db
 
 class Course(db.Model):
     __tablename__ = 'Courses'

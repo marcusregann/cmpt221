@@ -1,5 +1,5 @@
 """assoc.py: contains association tables for many to many relationships"""
-from db.db import db
+from server import db
 
 # join table between professors and courses
 ProfessorCourse = db.Table(
