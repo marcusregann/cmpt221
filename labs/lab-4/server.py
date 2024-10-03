@@ -53,7 +53,7 @@ with app.app_context():
 
     # # write a query to insert 3 records into the Courses table
     query_1 = ''' 
-    INSERT INTO Courses  
+    INSERT INTO "Courses"  
     VALUES 
         (30, 'Math', 'spring', 2028),
         (60, 'English', 'fall', 2027),
@@ -73,7 +73,7 @@ with app.app_context():
 
     # # write a query to update 1 record in the Courses table
     query_3 = """ 
-    UPDATE Courses
+    UPDATE "Courses"
     SET name='Computers'
     WHERE course_id=30;
     """
@@ -82,7 +82,7 @@ with app.app_context():
 
     # # write a query to delete 1 record in the Courses table
     query_4 = """ 
-    DELETE FROM Courses 
+    DELETE FROM "Courses" 
     WHERE course_id=60;
     """
     db.session.execute(text(query_4))
