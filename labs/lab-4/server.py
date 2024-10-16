@@ -49,15 +49,17 @@ with app.app_context():
         db.session.execute(text(value))
         db.session.commit()
 
-    # LAB 4 --------------------------------------------------
+lab-4
+     # LAB 4 --------------------------------------------------
 
     # # write a query to insert 3 records into the Courses table
     query_1 = ''' 
-    INSERT INTO "Courses"  
+    INSERT INTO "Courses"
+main
     VALUES 
-        (30, 'Math', 'spring', 2028),
-        (60, 'English', 'fall', 2027),
-        (70, 'Science', 'spring', 2025);
+        (30, "Math", 'spring', 2028),
+        (60, "English", 'fall', 2027),
+        (70, "Science", 'spring', 2025);
     '''
     db.session.execute(text(query_1))
     db.session.commit()
@@ -74,7 +76,7 @@ with app.app_context():
     # # write a query to update 1 record in the Courses table
     query_3 = """ 
     UPDATE "Courses"
-    SET name='Computers'
+    SET name="Computers"
     WHERE course_id=30;
     """
     db.session.execute(text(query_3))

@@ -1,30 +1,29 @@
-"""db.py: connect to Postgres database and create tables"""
+"""server.py: connect to Postgres database and create tables"""
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 
 # import environment variables from .env
 load_dotenv()
 
-# create the flask application with the same name as the file
-app = Flask(__name__)
+db_name: str = os.getenv('db_name')
+db_owner: str = os.getenv('db_owner')
+db_pass: str = os.getenv('db_pass')
+db_uri: str = f"postgresql://{db_owner}:{db_pass}@localhost/{db_name}"
 
-# tell flask which database you want to connect to. pulls values from .env
-app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{os.getenv('db_owner')}:{os.getenv('db_pass')}@localhost/{os.getenv('db_name')}"
-
-# flask-sqlalchemy instance; used for all database interactions
+# create the flask application & connect to db
+app = Flask(__name__, 
+            template_folder = os.path.join(os.getcwd(), 'templates'), 
+            static_folder=os.path.join(os.getcwd(), 'static'))
+app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
 db = SQLAlchemy(app)
 
 # this import is here because we need to initialize db before importing it into
 # the classes
-from db.schema.course import Course
-# uncomment the line below after creating the professor class
-from db.schema.professor import Professor
-# uncomment the line below after reviewing the assoc table
-# from db.schema.assoc import ProfessorCourse
+from db.schema.user import User
 
 # verify the db connection is successful
 with app.app_context():
@@ -42,4 +41,4 @@ with app.app_context():
     
     # create all database tables
     db.create_all()
-
+    db.session.commit()
