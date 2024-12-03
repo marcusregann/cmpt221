@@ -37,9 +37,9 @@ def db_session():
 # hint... can you do something similar for login?
 @pytest.fixture
 def sample_signup_input():
-    return {'FirstName': 'Calista', 
-            'LastName': 'Phippen', 
-            'Email': 'calista.phippen1@marist.edu', 
-            'PhoneNumber': '1234567891', 
-            'Password': 'mypassword'
+    return {'FirstName': 'Marcus', 
+            'LastName': 'Regan', 
+            'Email': 'marcus.regan1@marist.edu', 
+            'PhoneNumber': '1234567', 
+            'Password': 'password'
             }
